@@ -58,6 +58,7 @@ import com.viluong.business.ui.screens.BankingAndReportScreen
 import com.viluong.business.ui.screens.CreateOrderDialogWithAddressSuggest
 import com.viluong.business.ui.screens.CustomersScreen
 import com.viluong.business.ui.screens.DashboardScreen
+import com.viluong.business.ui.screens.OrdersScreen
 import com.viluong.business.ui.screens.InventoryScreen
 import com.viluong.business.ui.screens.VoiceAssistantSheetDialog
 import com.viluong.business.ui.theme.AppIcons
