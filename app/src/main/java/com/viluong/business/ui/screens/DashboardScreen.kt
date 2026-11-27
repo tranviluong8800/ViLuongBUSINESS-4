@@ -87,7 +87,7 @@ fun DashboardScreen(
                 )
                 Text(
                     text = "Chủ cửa hàng: ${state.store.ownerName} · ${state.store.storeAddress}",
-                    fontSize = 12sp,
+                    fontSize = 12.sp
                     color = MutedSlate,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
