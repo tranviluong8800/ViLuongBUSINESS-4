@@ -215,7 +215,7 @@ fun DashboardScreen(
                         )
                         Text(
                             text = ord.items.joinToString(", ") { "${it.machineName} x${it.quantity}" },
-                            fontSize = 12sp,
+                            fontSize = 12.sp,
                             color = MutedSlate,
                         )
                         Text(
