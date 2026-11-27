@@ -417,16 +417,13 @@ fun ViLuongBusinessApp(
             )
         }
 
-        assistantMode?.let { mode ->
+                assistantMode?.let { mode ->
             VoiceAssistantSheetDialog(
                 mode = mode,
                 state = state,
-                voiceConfig = state.voiceConfig,
                 onDismiss = { assistantMode = null },
-                onUpdateVoiceConfig = { nextCfg ->
-                    updateState { it.copy(voiceConfig = nextCfg) }
-                },
             )
+                }
         }
 
         if (showStoreSettings) {
