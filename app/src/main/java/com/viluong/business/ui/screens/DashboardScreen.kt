@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
@@ -87,7 +86,7 @@ fun DashboardScreen(
                 )
                 Text(
                     text = "Chủ cửa hàng: ${state.store.ownerName} · ${state.store.storeAddress}",
-                    fontSize = 12.sp
+                    fontSize = 12.sp,
                     color = MutedSlate,
                 )
                 Spacer(modifier = Modifier.height(10.dp))
@@ -220,7 +219,7 @@ fun DashboardScreen(
                         )
                         Text(
                             text = formatDateTimeVn(ord.createdAtMillis),
-                            fontSize = 11sp,
+                            fontSize = 11.sp,
                             color = MutedSlate,
                         )
                     }
@@ -234,7 +233,7 @@ fun DashboardScreen(
                         )
                         Text(
                             text = if (ord.remainingDebt > 0L) "Nợ ${formatVnd(ord.remainingDebt)}" else "Đã thu đủ",
-                            fontSize = 11sp,
+                            fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = if (ord.remainingDebt > 0L) AmberWarn else EmeraldOk,
                         )
