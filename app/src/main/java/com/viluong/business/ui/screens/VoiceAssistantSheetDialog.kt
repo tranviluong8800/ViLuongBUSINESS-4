@@ -48,15 +48,11 @@ fun VoiceAssistantSheetDialog(
     var promptText by remember { mutableStateOf("") }
     var replyText by remember {
         mutableStateOf(
-            "Xin chào ${state.store.ownerName}. Tôi đang hỗ trợ ${state.store.storeName} (chế độ: ${mode.name}).",
+            "Xin chào ${state.store.ownerName}. Đang hỗ trợ ${state.store.storeName} (${mode.name}).",
         )
     }
-    var wakeWordEnabled by remember(voiceConfig.wakeWordEnabled) {
-        mutableStateOf(voiceConfig.wakeWordEnabled)
-    }
-    var wakeWordPhrase by remember(voiceConfig.wakeWordPhrase) {
-        mutableStateOf(voiceConfig.wakeWordPhrase)
-    }
+    var wakeWordEnabled by remember { mutableStateOf(true) }
+    var wakeWordPhrase by remember { mutableStateOf("Hey Vĩ Lương") }
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -93,9 +89,9 @@ fun VoiceAssistantSheetDialog(
                 onClick = {
                     val q = promptText.trim()
                     replyText = if (q.isBlank()) {
-                        "Đang có ${state.orders.size} đơn hàng và ${state.machines.size} dòng máy trong danh sách."
+                        "Hiện có ${state.orders.size} đơn hàng và ${state.machines.size} dòng máy."
                     } else {
-                        "Đã ghi nhận yêu cầu: \"$q\". Tổng đơn hiện tại: ${state.orders.size}."
+                        "Đã nhận lệnh: \"$q\". Tổng đơn: ${state.orders.size}, tổng máy: ${state.machines.size}."
                     }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = ZaloBlue),
@@ -116,13 +112,13 @@ fun VoiceAssistantSheetDialog(
                 )
                 Switch(
                     checked = wakeWordEnabled,
-                    onCheckedChange = { wakeWordEnabled = it },
+                    onCheckedChange = { checked -> wakeWordEnabled = checked },
                 )
             }
 
             OutlinedTextField(
                 value = wakeWordPhrase,
-                onValueChange = { wakeWordPhrase = it },
+                onValueChange = { phrase -> wakeWordPhrase = phrase },
                 label = { Text("Từ khóa đánh thức") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
@@ -138,12 +134,7 @@ fun VoiceAssistantSheetDialog(
                 }
                 Button(
                     onClick = {
-                        onUpdateVoiceConfig(
-                            voiceConfig.copy(
-                                wakeWordEnabled = wakeWordEnabled,
-                                wakeWordPhrase = wakeWordPhrase.trim().ifBlank { "Hey Vĩ Lương" },
-                            ),
-                        )
+                        onUpdateVoiceConfig(voiceConfig)
                         onDismiss()
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = ZaloBlue),
