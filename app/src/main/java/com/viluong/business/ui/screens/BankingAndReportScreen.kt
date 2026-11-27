@@ -266,7 +266,7 @@ fun BankingAndReportScreen(
                         text = "+${formatVnd(bn.amountIn)}",
                         fontWeight = FontWeight.Bold,
                         fontFamily = FontFamily.Monospace,
-                        fontSize = 13sp,
+                        fontSize = 13.sp,
                         color = EmeraldOk,
                     )
                 }
