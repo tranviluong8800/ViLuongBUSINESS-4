@@ -47,6 +47,7 @@ import com.viluong.business.model.AssistantMode
 import com.viluong.business.model.Customer
 import com.viluong.business.model.Order
 import com.viluong.business.model.OrderStatus
+import com.viluong.business.model.PaymentMethod
 import com.viluong.business.model.PaymentRecord
 import com.viluong.business.model.ReportScope
 import com.viluong.business.model.StoreSettings
@@ -274,7 +275,7 @@ fun ViLuongBusinessApp(
                     AppTab.ORDERS -> OrdersScreen(
                         state = state,
                         onCreateOrder = { showCreateOrder = true },
-                        onRecordPayment = { targetOrder: Order, amount: Long, method: String ->
+                        onRecordPayment = { targetOrder: Order, amount: Long, method: PaymentMethod ->
                             updateState { cur ->
                                 val updatedOrders = cur.orders.map { o ->
                                     if (o.id == targetOrder.id) {
