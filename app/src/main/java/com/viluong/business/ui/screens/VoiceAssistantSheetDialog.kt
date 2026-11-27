@@ -30,7 +30,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.viluong.business.model.AssistantMode
-import com.viluong.business.model.VoiceAssistantConfig
 import com.viluong.business.model.WorkspaceState
 import com.viluong.business.ui.theme.NavyInk
 import com.viluong.business.ui.theme.ZaloBlue
@@ -40,9 +39,7 @@ import com.viluong.business.ui.theme.ZaloBlue
 fun VoiceAssistantSheetDialog(
     mode: AssistantMode,
     state: WorkspaceState,
-    voiceConfig: VoiceAssistantConfig,
     onDismiss: () -> Unit,
-    onUpdateVoiceConfig: (VoiceAssistantConfig) -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     var promptText by remember { mutableStateOf("") }
@@ -133,10 +130,7 @@ fun VoiceAssistantSheetDialog(
                     Text("Đóng")
                 }
                 Button(
-                    onClick = {
-                        onUpdateVoiceConfig(voiceConfig)
-                        onDismiss()
-                    },
+                    onClick = onDismiss,
                     colors = ButtonDefaults.buttonColors(containerColor = ZaloBlue),
                 ) {
                     Text("Lưu cấu hình")
