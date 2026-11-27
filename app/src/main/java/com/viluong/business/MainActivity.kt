@@ -262,7 +262,10 @@ fun ViLuongBusinessApp(
                         state = state,
                         onCreateOrder = { showCreateOrder = true },
                         onOpenAssistant = { mode -> assistantMode = mode },
-                        onShareReportZalo = { _, _ ->
+                        onShareReportZalo = { _ ->
+    val reportText = buildMonthlyReportText(state, currentYearMonth)
+    shareTextViaZaloOrChooser(context, "Báo cáo ${state.store.storeName}", reportText)
+},
                             val reportText = buildMonthlyReportText(state, currentYearMonth)
                             shareTextViaZaloOrChooser(context, "Báo cáo ${state.store.storeName}", reportText)
                         },
