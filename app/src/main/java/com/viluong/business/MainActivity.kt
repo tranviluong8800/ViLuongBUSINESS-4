@@ -98,6 +98,7 @@ private fun shareTextViaZaloOrChooser(context: Context, title: String, body: Str
         putExtra(Intent.EXTRA_TEXT, body)
         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
+
     if (zaloIntent.resolveActivity(context.packageManager) != null) {
         runCatching {
             context.startActivity(zaloIntent)
@@ -157,7 +158,7 @@ fun ViLuongBusinessApp(
         colors = listOf(
             Color(0xFFEAF3FF),
             Color(0xFFF6FAFF),
-            Color(0xFFE3EEFF),
+            Color(0xFFE5EEFF),
         ),
     )
 
@@ -186,7 +187,7 @@ fun ViLuongBusinessApp(
                             overflow = TextOverflow.Ellipsis,
                         )
                         Text(
-                            text = "${state.store.ownerName} · ${state.store.ownerRoleLabel}",
+                            text = "${state.store.ownerName} • ${state.store.ownerRoleLabel}",
                             fontSize = 11.5.sp,
                             color = MutedSlate,
                             maxLines = 1,
@@ -196,7 +197,7 @@ fun ViLuongBusinessApp(
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 6.dp),
+                        modifier = Modifier.padding(start = 8.dp),
                     ) {
                         SecondaryGlassButton(
                             text = "Trợ lý",
@@ -248,7 +249,7 @@ fun ViLuongBusinessApp(
                     }
                 }
             },
-        ) { innerPadding: PaddingValues ->
+        ) { innerPadding ->
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -290,10 +291,10 @@ fun ViLuongBusinessApp(
                                 val payment = PaymentRecord(
                                     id = "pay-${System.currentTimeMillis()}",
                                     orderId = targetOrder.id,
-                                    orderCode = targetOrder.orderCode,
+                                    orderCode = targetOrder.id,
                                     amount = amount,
                                     method = method,
-                                    note = "Thu đợt đơn ${targetOrder.orderCode}",
+                                    note = "Thu đợt đơn ${targetOrder.id}",
                                 )
                                 cur.copy(
                                     orders = updatedOrders,
@@ -308,7 +309,7 @@ fun ViLuongBusinessApp(
                                 storeAddress = state.store.storeAddress,
                                 order = ord,
                             )
-                            shareTextViaZaloOrChooser(context, "Hóa đơn ${ord.orderCode}", invoiceText)
+                            shareTextViaZaloOrChooser(context, "Hóa đơn ${ord.id}", invoiceText)
                         },
                     )
 
@@ -417,13 +418,12 @@ fun ViLuongBusinessApp(
             )
         }
 
-                assistantMode?.let { mode ->
+        assistantMode?.let { mode ->
             VoiceAssistantSheetDialog(
                 mode = mode,
                 state = state,
                 onDismiss = { assistantMode = null },
             )
-                }
         }
 
         if (showStoreSettings) {
@@ -504,3 +504,5 @@ fun ViLuongBusinessApp(
         }
     }
 }
+
+        
