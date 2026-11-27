@@ -248,7 +248,7 @@ private fun CustomerItemCard(
                     Text("SĐT: ${customer.phone}", fontSize = 12.sp, color = MutedSlate)
                 }
                 if (customer.workshopAddress.isNotBlank()) {
-                    Text("Xưởng: ${customer.workshopAddress}", fontSize = 12sp, color = MutedSlate)
+                    Text("Xưởng: ${customer.workshopAddress}", fontSize = 12.sp, color = MutedSlate)
                 }
                 if (customer.notes.isNotBlank()) {
                     Text("Ghi chú: ${customer.notes}", fontSize = 11.5.sp, color = MutedSlate)
